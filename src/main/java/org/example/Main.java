@@ -1,19 +1,31 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Inventory inventory = new Inventory();
 
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Item item1 = new Item(1, "Item 1", 10);
+        Item item2 = new Item(2, "Item 2", 45);
 
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
+
+        inventory.addItem(item1);
+        inventory.addItem(item2);
+
+
+        try {
+            inventory.removeItem(1, 15);
+        } catch (InsufficientStockException e) {
+            System.out.println(e.getMessage());
+        } catch (ItemNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            inventory.removeItem(3, 1);
+        } catch (InsufficientStockException e) {
+            System.out.println(e.getMessage());
+        } catch (ItemNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
